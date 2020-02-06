@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+</head>
+<body>
+	<div id="status">
+	</div>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+    function poll(){
+    $.get('/status', function(data) {
+        console.log(data);  
+	    var notification = new Notification(data.status,{body:'thing!'});
+        setTimeout(poll,2000);
+    });
+}
+    poll();
+});
+	
+</script>
+
+</body>
